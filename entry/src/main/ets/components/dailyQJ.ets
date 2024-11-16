@@ -205,6 +205,7 @@ struct dailyQJNavBar{
 
   async aboutToAppear(): Promise<void> {
     await this.showDailyQJ()
+    // 123
   }
   build() {
     Column(){
