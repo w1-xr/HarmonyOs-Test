@@ -1,0 +1,15 @@
+{
+  "src": [
+    "pages/ADLogin",
+    "pages/ADIndex",
+    "pages/classIndex",
+    "pages/dailyIndex",
+    "pages/dailyCCIndex",
+    "pages/dailyKQIndex",
+    "pages/dailyQJIndex",
+    "pages/ProgectIndex",
+    "pages/SystemIndex",
+    "pages/StuIndex",
+    "pages/rzPage"
+  ]
+}
