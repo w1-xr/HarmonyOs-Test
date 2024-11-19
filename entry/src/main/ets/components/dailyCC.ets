@@ -26,7 +26,7 @@ import { DateUtils } from '../utils/padStart'
 struct dailyCCNavBar{
   @Prop curIndex:number
   @State dialogTitle:string=""
-  @Prop newState:boolean=false
+  @Prop newState:boolean=true
   @Prop curIndextwo:number
   @State textt:number=1
   @State date:string=new Date().toLocaleDateString()
@@ -170,7 +170,6 @@ struct dailyCCNavBar{
       endDate:this.businessDateEnd
     }
 
-    console.log("出差",JSON.stringify(dataset))
     await this.addcc(dataset)
 
     promptAction.showToast({

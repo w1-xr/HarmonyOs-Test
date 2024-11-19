@@ -78,18 +78,16 @@ struct RZNavBar {
         this.logId=findlogId.logId
 
       }
-
   }
-
   async showZaixiao(){
     let dataset:stuDARequestClass={
-      pageIndex:this.pageIndex,
-      pageSize:this.pageSize,
+      pageIndex:1,
+      pageSize:100,
       fileManagerType:"在习生",
-      fileManagerName:this.userName
     }
     let res=await stuDAdel(dataset)
-    this.logClazz=res.fileManagerList[0].clazzId
+    let item=res.fileManagerList.find((v:fileManagerListClass)=>v.fileManagerName==this.userName)
+    this.logClazz=item!.clazzId
   }
   async addrz(){
     let dataset:addrzRequestClass={
@@ -109,7 +107,6 @@ struct RZNavBar {
         logStatus:this.logStatus
       }
       let res=await editRZ(dataset)
-      console.log("修改日志",JSON.stringify(dataset))
 
   }
   async delrz(){
@@ -118,8 +115,9 @@ struct RZNavBar {
   }
 
   async aboutToAppear(): Promise<void> {
+    await this.showrzList()
     await this.showZaixiao()
-     await this.showrzList()
+
   }
   //dialog
   private customDialogCon:CustomDialogController=new CustomDialogController({

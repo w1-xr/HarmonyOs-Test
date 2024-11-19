@@ -2,8 +2,8 @@
 struct selectNavBar{
 @Prop rowTitle:string
 @Prop selectArr:SelectOption[]
-  @Link valuee:string
   @Link selected:number
+  @Link valuee:string
 @Prop ena:boolean=true
   build() {
     Row() {

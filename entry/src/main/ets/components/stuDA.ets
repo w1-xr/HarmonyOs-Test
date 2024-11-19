@@ -76,20 +76,15 @@ struct stuDANavBar{
   })
 async curConfirmFn(){
   let res=await classId()
-  let findClass=res.find(item=>item.clazzName==this.valuee2)
+  let findClass=res.find(item=>item.clazzName==this.selectArrCLass[this.selected2].value)
   if (findClass){
     this.clazzId=findClass.clazzId
   }
   if (this.statu=="add"){
     await this.add()
-    promptAction.showToast({
-      message:"添加成功"
-    })
+
   }else if(this.statu=="edit") {
     await this.editDA()
-    promptAction.showToast({
-      message:"修改成功"
-    })
   }
 }
  @Builder curArea(){
@@ -272,17 +267,21 @@ async curConfirmFn(){
   if (this.titleName=="预招生档案"){
     let dataset:addDARequestCLass={
         fileManagerName:this.fileManagerName,
-        fileManagerSex:this.valuee1,
+        fileManagerSex:this.selected1==0?"男":"女",
         clazzId:this.clazzId,
        fileManagerDate:this.fileManagerDate,
        fileManagerPhone:this.fileManagerPhone,
        fileManagerType:"预招生"
     }
    let res=await addDA(dataset)
+    promptAction.showToast({
+      message:"添加成功"
+    })
+
   }else if (this.titleName=="在校生/毕业生"){
     let dataset:addDARequestCLass={
       fileManagerName:this.fileManagerName,
-      fileManagerSex:this.valuee1,
+      fileManagerSex:this.selected1==0?"男":"女",
       clazzId:this.clazzId,
       fileManagerDate:this.fileManagerDate,
       fileManagerPhone:this.fileManagerPhone,
@@ -292,7 +291,12 @@ async curConfirmFn(){
       fileManagerSosperson:this.fileManagerSosperson,
       fileManagerSosphone:this.fileManagerSosphone
     }
+    console.log(JSON.stringify(dataset))
+    console.log(JSON.stringify(dataset.clazzId),"添加班级id")
     let res=await addDA(dataset)
+    promptAction.showToast({
+      message:"添加成功"
+    })
   }
   }
   async editDA(){
@@ -300,19 +304,21 @@ async curConfirmFn(){
     let dataset:editDARequestClass= {
       fileManagerName: this.fileManagerName,
       fileManagerId: this.fileManagerId,
-      fileManagerSex: this.valuee1,
+      fileManagerSex: this.selected1==0?"男":"女",
       clazzId:this.clazzId,
       fileManagerDate: this.fileManagerDate,
       fileManagerPhone: this.fileManagerPhone,
     }
     let res=await editDA(dataset)
-    console.log("----",JSON.stringify(dataset))
+    promptAction.showToast({
+      message:"修改成功"
+    })
   }else if(this.titleName=="在校生/毕业生") {
     let dataset:editDARequestClass={
       fileManagerName:this.fileManagerName,
       fileManagerId:this.fileManagerId,
       fileManagerAccount:this.fileManagerAccount,
-      fileManagerSex:this.valuee1,
+      fileManagerSex:this.selected1==0?"男":"女",
       clazzId:this.clazzId,
       fileManagerAddress:this.fileManagerAddress,
       fileManagerSosperson:this.fileManagerSosperson,
@@ -320,8 +326,12 @@ async curConfirmFn(){
       fileManagerDate:this.fileManagerDate,
       fileManagerPhone:this.fileManagerPhone
     }
-
+    console.log(JSON.stringify(dataset))
+    console.log(JSON.stringify(dataset.clazzId)+"修改班级id")
     let res=await editDA(dataset)
+    promptAction.showToast({
+      message:"修改成功"
+    })
   }
   }
   async aboutToAppear(): Promise<void> {

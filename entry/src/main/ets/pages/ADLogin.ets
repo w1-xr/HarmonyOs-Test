@@ -11,7 +11,7 @@ import { Login } from '../api'
 @Entry
 @Component
 struct BaoerADLogin {
-  @State userAccount:string="xiaowangT"
+  @State userAccount:string="xiaowangS"
   @State userPassword:string="123456"
   @State flaguser:boolean=false
   @State flagpwd:boolean=false

@@ -12,9 +12,16 @@ struct StuIndex {
       MainCom({
         curIndex:this.curIndex,
         curIndexTwo:this.curIndexTwo
-
       }){
-         Text("握手首页")
+         Column(){
+           Image("/images/dog.png")
+             .height("80%")
+           Text("欢迎来到保尔科技公司")
+             .fontSize(30)
+             .fontWeight(600)
+         }
+         .width("100%")
+         .height("100%")
       }
 
     }

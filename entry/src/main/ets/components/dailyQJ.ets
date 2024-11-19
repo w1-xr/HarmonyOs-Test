@@ -174,15 +174,12 @@ struct dailyQJNavBar{
       userName:this.userName,
       identify:this.userRole=="老师"?2:3//
     }
-    console.log("请假",JSON.stringify(dataset))
     await this.addQJ(dataset)
     promptAction.showToast({
       message:"添加成功"
     })
     dataset.identify=this.userRole=="老师"?"老师":"学生"
     dataset.userId=this.userName
-
-
     this.dailyQJData.unshift(dataset)
   }
 
@@ -205,6 +202,7 @@ struct dailyQJNavBar{
 
   async aboutToAppear(): Promise<void> {
     await this.showDailyQJ()
+    // 123
   }
   build() {
     Column(){

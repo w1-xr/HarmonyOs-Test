@@ -153,7 +153,7 @@ struct UserNavBar{
               }else if($$.arr===this.deptArr){
               this.deptId=index+""
               }else if ($$.arr===this.znArr){
-                this.userRole=(index)+""
+                this.userRole=index+""
               }
             })
         }
@@ -182,7 +182,7 @@ editResult(item:userListClass | undefined=undefined){
   this.userPhone=item?item.userPhone!:""
   this.userAccount=item?item.userAccount!:""
   this.userSex=item? this.getIndex(this.sexArr, item.userSex) : ""
-  this.userRole=item? this.getIndex(this.znArr, item.userRole) :""
+  this.userRole=item? this.getIndex(this.znArr, item.userRole!) :""
   this.deptId=item?this.getIndex(this.deptArr, item.deptId!):""
 }
 @Builder curArea(){
@@ -213,7 +213,7 @@ editResult(item:userListClass | undefined=undefined){
       userAccount:this.userAccount,
       userPhone:this.userPhone,
       userSex :this.userSex,
-      userRole : 2+"",
+      userRole : (Number(this.userRole) + 1) + "",
       deptId : (parseInt(this.deptId) + 1) + "",
     }
     if(this.dialogTitle=="添加用户"){
@@ -222,6 +222,7 @@ editResult(item:userListClass | undefined=undefined){
         message:"添加成功"
       })
     }else  if(this.dialogTitle=="修改用户"){
+      console.log(JSON.stringify(dataset))
       await this.editUser(dataset)
       promptAction.showToast({
         message:"修改成功"
@@ -378,6 +379,8 @@ editResult(item:userListClass | undefined=undefined){
                       .onClick(()=>{
                         this.dialogTitle="修改用户"
                         this.userId=item.userId
+                        this.userRole=item.userRole
+                        console.log(item.userRole,this.userRole)
                         this.editResult(item)
                         this.editIndex=index
                         this.customDialogCon.open()
